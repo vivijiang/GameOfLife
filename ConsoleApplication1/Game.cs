@@ -38,8 +38,7 @@ namespace ConsoleApplication1
 
         public static int[] dx = { 0, 0, -1, 1, -1, -1, 1, 1 };
         public static int[] dy = { -1, 1, 0, 0, -1, 1, -1, 1 };
-        public static int[] alive = { 0, 0, 1, 1, 0, 0, 0, 0, 0 };
-        public static int[] dead = { 0, 0, 0, 1, 0, 0, 0, 0, 0 };
+
 
         private static bool CheckIsInBound(int curRow, int curCol)
         {
@@ -61,9 +60,20 @@ namespace ConsoleApplication1
             if (CheckIsInBound(curRow + dx[7], curCol + dy[7])) count += source[curRow + dx[7], curCol + dy[7]];
 
             if (source[curRow, curCol] == 1)
-                result[curRow, curCol] = alive[count];
+            {
+                if (count == 2 || count == 3)
+                    result[curRow, curCol] = 1;
+            }
+
             else
-                result[curRow, curCol] = dead[count];
+            {
+                if (count == 3)
+                    result[curRow, curCol] = 1;
+                else
+                {
+                    result[curRow, curCol] = 0;
+                }
+            }
 
         }
     }

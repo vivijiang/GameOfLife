@@ -20,8 +20,8 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestMethod2()
         {
-            int[,] input = new int[,] { { 1,1 } };
-            var expect = new int[,] { { 0 ,0} };
+            int[,] input = new int[,] { { 1,1 },{1,1} };
+            var expect = new int[,] { { 1 ,1} ,{1,1}};
             var actual = Game.Next(input);
             CollectionAssert.AreEqual(expect, actual);
         }
