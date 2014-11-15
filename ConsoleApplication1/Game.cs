@@ -30,7 +30,8 @@ namespace ConsoleApplication1
             {
                 ScanCurCell(source, result, curRowIndex, curColumnIndex);
                 curColumnIndex = (curColumnIndex + 1) % col;
-                if (curColumnIndex == 0) curRowIndex++;
+                if (curColumnIndex == 0) 
+                    curRowIndex++;
                 ScanRow(source, result, curRowIndex, curColumnIndex);
             }
 
@@ -50,14 +51,8 @@ namespace ConsoleApplication1
         public static void ScanCurCell(int[,] source, int[,] result, int curRow, int curCol)
         {
             int count = 0;
-            if (CheckIsInBound(curRow + dx[0], curCol + dy[0])) count += source[curRow + dx[0], curCol + dy[0]];
-            if (CheckIsInBound(curRow + dx[1], curCol + dy[1])) count += source[curRow + dx[1], curCol + dy[1]];
-            if (CheckIsInBound(curRow + dx[2], curCol + dy[2])) count += source[curRow + dx[2], curCol + dy[2]];
-            if (CheckIsInBound(curRow + dx[3], curCol + dy[3])) count += source[curRow + dx[3], curCol + dy[3]];
-            if (CheckIsInBound(curRow + dx[4], curCol + dy[4])) count += source[curRow + dx[4], curCol + dy[4]];
-            if (CheckIsInBound(curRow + dx[5], curCol + dy[5])) count += source[curRow + dx[5], curCol + dy[5]];
-            if (CheckIsInBound(curRow + dx[6], curCol + dy[6])) count += source[curRow + dx[6], curCol + dy[6]];
-            if (CheckIsInBound(curRow + dx[7], curCol + dy[7])) count += source[curRow + dx[7], curCol + dy[7]];
+            
+            count = getCount(0, curRow, curCol, source);
 
             if (source[curRow, curCol] == 1)
             {
@@ -75,6 +70,17 @@ namespace ConsoleApplication1
                 }
             }
 
+        }
+
+        public static int getCount(int position, int curRow,int curCol,int[,] source)
+        {
+            int Count = 0;
+            if (position == 8)
+                return 0;
+
+            if (CheckIsInBound(curRow + dx[position], curCol + dy[position])) 
+                Count += source[curRow + dx[position], curCol + dy[position]];
+            return Count + getCount(position + 1, curRow, curCol, source);
         }
     }
 }
